@@ -33,6 +33,7 @@ playground.xcworkspace
 
 ## Swift Package Manager
 .build/
+.swiftpm/
 
 ## CocoaPods
 Pods/
@@ -42,3 +43,8 @@ Carthage/Build
 
 ## Jazzy docs
 docs/
+
+## Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/test_output

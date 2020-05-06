@@ -9,21 +9,13 @@
 import XCTest
 @testable import SwifterSwift
 
-#if canImport(UIKit) || canImport(Cocoa)
-
-#if os(macOS)
-import Cocoa
-public typealias Color = NSColor
-#else
-import UIKit
-public typealias Color = UIColor
-#endif
+#if canImport(AppKit) || canImport(UIKit)
 
 #if !os(watchOS)
 import CoreImage
 #endif
 
-// swiftlint:disable next type_body_length
+// swiftlint:disable:next type_body_length
 final class ColorExtensionsTests: XCTestCase {
 
     // MARK: - Test properties
@@ -77,7 +69,7 @@ final class ColorExtensionsTests: XCTestCase {
     }
 
     func testAlpha() {
-        var color: Color = Color.red
+        var color = Color.red
         XCTAssertEqual(color.alpha, 1.0)
 
         color = Color.white.withAlphaComponent(0.5)

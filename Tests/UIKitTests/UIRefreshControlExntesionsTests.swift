@@ -9,7 +9,7 @@
 import XCTest
 @testable import SwifterSwift
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && os(iOS)
 import UIKit
 
 final class UIRefreshControlExtensionTests: XCTestCase {
@@ -24,16 +24,15 @@ final class UIRefreshControlExtensionTests: XCTestCase {
         XCTAssertTrue(refreshControl.isRefreshing)
         XCTAssertEqual(tableView.contentOffset.y, -refreshControl.frame.height)
 
-        if #available(iOS 10.0, *) {
-            let anotherTableview = UITableView()
-            XCTAssertEqual(anotherTableview.contentOffset, .zero)
-            anotherTableview.refreshControl = UIRefreshControl()
-            anotherTableview.refreshControl?.beginRefreshing(in: anotherTableview, animated: true, sendAction: true)
+        let anotherTableview = UITableView()
+        XCTAssertEqual(anotherTableview.contentOffset, .zero)
+        anotherTableview.refreshControl = UIRefreshControl()
+        anotherTableview.refreshControl?.beginRefreshing(in: anotherTableview, animated: true, sendAction: true)
 
-            XCTAssertTrue(anotherTableview.refreshControl!.isRefreshing)
-            XCTAssertEqual(anotherTableview.contentOffset.y, -anotherTableview.refreshControl!.frame.height)
-        }
+        XCTAssertTrue(anotherTableview.refreshControl!.isRefreshing)
+        XCTAssertEqual(anotherTableview.contentOffset.y, -anotherTableview.refreshControl!.frame.height)
     }
 
 }
+
 #endif

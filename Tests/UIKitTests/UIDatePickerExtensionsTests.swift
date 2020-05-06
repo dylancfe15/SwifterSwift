@@ -9,14 +9,16 @@
 import XCTest
 @testable import SwifterSwift
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && os(iOS)
 import UIKit
 
 final class UIDatePickerExtensionsTests: XCTestCase {
 
     func testTextColor() {
         let datePicker = UIDatePicker()
-        XCTAssertNil(datePicker.textColor)
+        if let color = datePicker.textColor {
+            XCTAssertNotEqual(color, .red)
+        }
 
         datePicker.textColor = .red
         XCTAssertEqual(datePicker.textColor, .red)
@@ -29,4 +31,5 @@ final class UIDatePickerExtensionsTests: XCTestCase {
     }
 
 }
+
 #endif
